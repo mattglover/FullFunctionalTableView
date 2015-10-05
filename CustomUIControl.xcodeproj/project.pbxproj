@@ -15,6 +15,8 @@
 		B26F594F1BC2E767000598C7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B26F594D1BC2E767000598C7 /* LaunchScreen.storyboard */; };
 		B26F595A1BC2E767000598C7 /* CustomUIControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26F59591BC2E767000598C7 /* CustomUIControlTests.m */; };
 		B26F59651BC2E767000598C7 /* CustomUIControlUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B26F59641BC2E767000598C7 /* CustomUIControlUITests.m */; };
+		B26F59771BC2E887000598C7 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B26F59761BC2E887000598C7 /* CustomTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		B26F597D1BC30102000598C7 /* CustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B26F597C1BC30102000598C7 /* CustomView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +39,8 @@
 /* Begin PBXFileReference section */
 		B26F593C1BC2E767000598C7 /* CustomUIControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomUIControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26F59401BC2E767000598C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B26F59421BC2E767000598C7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B26F59431BC2E767000598C7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B26F59421BC2E767000598C7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../CustomUIControl/AppDelegate/AppDelegate.h; sourceTree = "<group>"; };
+		B26F59431BC2E767000598C7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../CustomUIControl/AppDelegate/AppDelegate.m; sourceTree = "<group>"; };
 		B26F59451BC2E767000598C7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B26F59461BC2E767000598C7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B26F59491BC2E767000598C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,6 +53,10 @@
 		B26F59601BC2E767000598C7 /* CustomUIControlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomUIControlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26F59641BC2E767000598C7 /* CustomUIControlUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomUIControlUITests.m; sourceTree = "<group>"; };
 		B26F59661BC2E767000598C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B26F59751BC2E887000598C7 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		B26F59761BC2E887000598C7 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		B26F597B1BC30102000598C7 /* CustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomView.h; sourceTree = "<group>"; };
+		B26F597C1BC30102000598C7 /* CustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +107,10 @@
 		B26F593E1BC2E767000598C7 /* CustomUIControl */ = {
 			isa = PBXGroup;
 			children = (
-				B26F59421BC2E767000598C7 /* AppDelegate.h */,
-				B26F59431BC2E767000598C7 /* AppDelegate.m */,
-				B26F59451BC2E767000598C7 /* ViewController.h */,
-				B26F59461BC2E767000598C7 /* ViewController.m */,
-				B26F59481BC2E767000598C7 /* Main.storyboard */,
-				B26F594B1BC2E767000598C7 /* Assets.xcassets */,
-				B26F594D1BC2E767000598C7 /* LaunchScreen.storyboard */,
-				B26F59501BC2E767000598C7 /* Info.plist */,
+				B26F59721BC2E77D000598C7 /* AppDelegate */,
+				B26F59731BC2E788000598C7 /* ViewControllers */,
+				B26F59741BC2E7E4000598C7 /* UITableViewCells */,
+				B26F597A1BC2F5F1000598C7 /* Views */,
 				B26F593F1BC2E767000598C7 /* Supporting Files */,
 			);
 			path = CustomUIControl;
@@ -117,6 +119,10 @@
 		B26F593F1BC2E767000598C7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B26F59481BC2E767000598C7 /* Main.storyboard */,
+				B26F594B1BC2E767000598C7 /* Assets.xcassets */,
+				B26F594D1BC2E767000598C7 /* LaunchScreen.storyboard */,
+				B26F59501BC2E767000598C7 /* Info.plist */,
 				B26F59401BC2E767000598C7 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +144,42 @@
 				B26F59661BC2E767000598C7 /* Info.plist */,
 			);
 			path = CustomUIControlUITests;
+			sourceTree = "<group>";
+		};
+		B26F59721BC2E77D000598C7 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				B26F59421BC2E767000598C7 /* AppDelegate.h */,
+				B26F59431BC2E767000598C7 /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = SOURCE_ROOT;
+		};
+		B26F59731BC2E788000598C7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B26F59451BC2E767000598C7 /* ViewController.h */,
+				B26F59461BC2E767000598C7 /* ViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B26F59741BC2E7E4000598C7 /* UITableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				B26F59751BC2E887000598C7 /* CustomTableViewCell.h */,
+				B26F59761BC2E887000598C7 /* CustomTableViewCell.m */,
+			);
+			path = UITableViewCells;
+			sourceTree = "<group>";
+		};
+		B26F597A1BC2F5F1000598C7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B26F597B1BC30102000598C7 /* CustomView.h */,
+				B26F597C1BC30102000598C7 /* CustomView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,8 +312,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B26F597D1BC30102000598C7 /* CustomView.m in Sources */,
 				B26F59471BC2E767000598C7 /* ViewController.m in Sources */,
 				B26F59441BC2E767000598C7 /* AppDelegate.m in Sources */,
+				B26F59771BC2E887000598C7 /* CustomTableViewCell.m in Sources */,
 				B26F59411BC2E767000598C7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
