@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Y43-Dz-VNf">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomTableViewCell" rowHeight="80" id="o8a-A3-tQe" customClass="CustomTableViewCell">
@@ -59,13 +59,32 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="H8y-iW-KnQ"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UcP-3d-Ksp">
+                                <rect key="frame" x="0.0" y="492" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Delete" id="DzC-sk-cX9">
+                                        <connections>
+                                            <action selector="deleteSelectedTapped:" destination="BYZ-38-t0r" id="FTE-Kf-r7K"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="BQr-lG-EdM"/>
+                                    <barButtonItem title="Select All" id="UJC-z8-EUD">
+                                        <connections>
+                                            <action selector="selectAllTapped:" destination="BYZ-38-t0r" id="fYP-ey-lBP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottomMargin" secondItem="UcP-3d-Ksp" secondAttribute="bottom" id="BL3-sr-Pee"/>
+                            <constraint firstAttribute="trailing" secondItem="UcP-3d-Ksp" secondAttribute="trailing" id="Fh1-s2-Lo2"/>
+                            <constraint firstItem="UcP-3d-Ksp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="PYy-Is-ocM"/>
                             <constraint firstItem="Y43-Dz-VNf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="QqD-Uy-4ne"/>
                             <constraint firstAttribute="trailing" secondItem="Y43-Dz-VNf" secondAttribute="trailing" id="ZdW-sb-yFF"/>
+                            <constraint firstItem="UcP-3d-Ksp" firstAttribute="top" secondItem="Y43-Dz-VNf" secondAttribute="bottom" id="kw0-cJ-m8L"/>
                             <constraint firstAttribute="topMargin" secondItem="Y43-Dz-VNf" secondAttribute="top" id="uvW-ts-0E4"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Y43-Dz-VNf" secondAttribute="bottom" id="xae-XX-zTM"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
@@ -77,7 +96,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="editBarButton" destination="MXK-Z0-Jv2" id="LaF-aY-EeE"/>
+                        <outlet property="editToolbar" destination="UcP-3d-Ksp" id="YUE-Ab-vxb"/>
                         <outlet property="tableView" destination="Y43-Dz-VNf" id="A4j-e4-709"/>
+                        <outlet property="toolbarBottomConstraint" destination="BL3-sr-Pee" id="Q7z-sy-bI6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -89,9 +111,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lpG-UV-sTL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YOv-LP-Pro">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="YOv-LP-Pro">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

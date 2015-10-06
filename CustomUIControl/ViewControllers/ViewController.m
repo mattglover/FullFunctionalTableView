@@ -13,8 +13,11 @@
 static NSString * const kCustomTableViewCellIdentifier = @"CustomTableViewCell";
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *data;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editBarButton;
+@property (weak, nonatomic) IBOutlet UIToolbar *editToolbar;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarBottomConstraint;
 @end
 
 @implementation ViewController
@@ -36,6 +39,8 @@ static NSString * const kCustomTableViewCellIdentifier = @"CustomTableViewCell";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 80.0f;
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    
+    [self dismissToolbar:NO];
 }
 
 #pragma mark - UITableView Datasource
@@ -76,10 +81,56 @@ static NSString * const kCustomTableViewCellIdentifier = @"CustomTableViewCell";
 #pragma mark - UIBarButton Actions
 - (IBAction)barButtonTapped:(UIBarButtonItem *)sender {
     [self.tableView setEditing:![self.tableView isEditing] animated:YES];
+    [self toggleEditingUI];
+}
+
+- (void)toggleEditingUI {
     if ([self.tableView isEditing]) {
-        [sender setTitle:@"Done"];
+        [self.editBarButton setTitle:@"Done"];
+        [self presentToolbar];
     } else {
-        [sender setTitle:@"Edit"];
+        [self.editBarButton setTitle:@"Edit"];
+        [self dismissToolbar:YES];
+    }
+}
+
+#pragma mark - EditToolbar
+- (void)presentToolbar { // always animated
+    self.toolbarBottomConstraint.constant = 0;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)dismissToolbar:(BOOL)animated {
+    self.toolbarBottomConstraint.constant = -CGRectGetHeight(self.editToolbar.bounds);
+    NSTimeInterval animationTime = animated ? 0.3 : 0.0;
+    [UIView animateWithDuration:animationTime animations:^{
+        [self.view layoutIfNeeded];
+    }];
+}
+
+#pragma mark - EditToolbar Actions
+- (IBAction)deleteSelectedTapped:(id)sender {
+   
+    NSArray *selectedIndexPaths = [self.tableView indexPathsForSelectedRows];
+    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    for (NSIndexPath *selectedIndexPath in selectedIndexPaths) {
+        [indexSet addIndex:selectedIndexPath.row];
+    }
+    
+    [self.tableView beginUpdates];
+    [self.data removeObjectsAtIndexes:indexSet];
+    [self.tableView deleteRowsAtIndexPaths:selectedIndexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView endUpdates];
+    
+    [self.tableView setEditing:NO animated:YES];
+    [self toggleEditingUI];
+}
+
+- (IBAction)selectAllTapped:(id)sender {
+    for (int loop = 0; loop < [self tableView:self.tableView numberOfRowsInSection:0]; loop++) {
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:loop inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
 }
 
