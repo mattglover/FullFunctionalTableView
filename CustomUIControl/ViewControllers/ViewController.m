@@ -26,8 +26,8 @@ static NSString * const kCustomTableViewCellIdentifier = @"CustomTableViewCell";
     [super awakeFromNib];
     
     NSMutableArray *data = [NSMutableArray array];
-    for (int loop = 0; loop < 20; loop++) {
-        NSDictionary *dataDictionary = @{@"number":@(loop), @"title":@"Moderato", @"body":@"Music In moderate tempo that is slower than allegretto but faster than andante. Used chiefly as a direction.", @"subtitle":@"from The American Heritage® Dictionary of the English Language, 4th Edition"};
+    for (int loop = 0; loop < 10; loop++) {
+        NSDictionary *dataDictionary = @{@"number":@(loop), @"title":@"Moderato", @"body":@"Music In moderate tempo that is slower than allegretto but faster than andante. Used chiefly as a direction.", @"subtitle":@"from The American Heritage® Dictionary of the English Language, 4th Edition", @"flagged":@(NO)};
         [data addObject:dataDictionary];
     }
     self.data = data;
@@ -61,21 +61,33 @@ static NSString * const kCustomTableViewCellIdentifier = @"CustomTableViewCell";
 }
 
 #pragma mark - UITableView Delegate
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewRowAction *deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        [tableView beginUpdates];
+        [self.data removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+    }];
+    
+    UITableViewRowAction *archiveRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Flag" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        NSMutableDictionary *dataDictionary = [self.data[indexPath.row] mutableCopy];
+        dataDictionary[@"flagged"] = @(YES);
+        self.data[indexPath.row] = dataDictionary;
+        // TODO
+        // add dataDictionary to Archive.
+        // Remove cell from tableView
+    }];
+    archiveRowAction.backgroundColor = [UIColor greenColor];
+    
+    return @[deleteRowAction, archiveRowAction];
+}
+
 // Move
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {
     NSDictionary *movedDataDictionary = self.data[sourceIndexPath.row];
     [self.data removeObjectAtIndex:sourceIndexPath.row];
     [self.data insertObject:movedDataDictionary atIndex:destinationIndexPath.row];
-}
-
-// Delete
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView beginUpdates];
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.data removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
-    [tableView endUpdates];
 }
 
 #pragma mark - UIBarButton Actions
