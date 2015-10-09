@@ -7,6 +7,7 @@
 //
 
 #import "CustomTableViewCell.h"
+#import "CustomView.h"
 
 @implementation CustomTableViewCell
 
@@ -24,6 +25,7 @@
 - (void)configureView {
     self.customTitleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
     self.customTitleLabel.numberOfLines = 0;
+    [self.customTitleLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
 }
 
 - (void)didChangeDynamicTypeSize:(NSNotification *)notification {

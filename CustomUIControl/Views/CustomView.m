@@ -34,28 +34,27 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)didChangeDynamicTypeSize:(NSNotification *)notification {
-    [self configureSubviews];
-}
-
+#pragma mark - Setup UI
 - (void)setupSubviews {
     _bodyLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.bodyLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.bodyLabel.numberOfLines = 0;
     self.bodyLabel.textColor = [UIColor darkTextColor];
     [self addSubview:self.bodyLabel];
-
+    
     _subtitleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     self.subtitleLabel.textColor = [UIColor grayColor];
     [self addSubview:self.subtitleLabel];
 }
 
+#pragma mark - Configure UI
 - (void)configureSubviews {
     self.bodyLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     self.subtitleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
 }
 
+#pragma mark - Constraints
 - (void)updateConstraints {
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_bodyLabel, _subtitleLabel);
@@ -65,6 +64,11 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_bodyLabel]-8-[_subtitleLabel]|" options:0 metrics:nil views:views]];
     
     [super updateConstraints];
+}
+
+#pragma mark - Notification Listeners
+- (void)didChangeDynamicTypeSize:(NSNotification *)notification {
+    [self configureSubviews];
 }
 
 @end
