@@ -28,6 +28,8 @@ static NSTimeInterval const kAnimationDuration = 0.3;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Title";
+    
     [self fetchDataWithCompletion:^(NSMutableArray *data) {
         self.data = data;
         [self.tableView reloadData];
